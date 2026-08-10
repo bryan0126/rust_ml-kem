@@ -1,0 +1,49 @@
+# Rust
+/target/
+**/*.rs.bk
+*.pdb
+
+# Cargo.lock is committed — this project ships binaries, not just a library.
+# (Remove the line below if it should ever be ignored.)
+# Cargo.lock
+
+# C build artifacts
+*.o
+*.obj
+*.a
+*.lib
+*.so
+*.so.*
+*.dylib
+*.dll
+*.exe
+*.d
+*.gcno
+*.gcda
+*.gcov
+build/
+cmake-build-*/
+CMakeCache.txt
+CMakeFiles/
+
+# Generated KAT output / benchmark results
+*.req
+*.rsp
+!/tests/kat/**
+/out/
+/bench-results/
+
+# Editors & IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Misc
+*.log
+*.tmp
