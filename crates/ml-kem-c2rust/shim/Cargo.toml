@@ -1,0 +1,15 @@
+[package]
+name = "oqs_shim"
+version = "0.1.0"
+edition = "2018"
+
+# C2Rust 로 변환된 ML-KEM 코드가 참조하는 외부 심볼(OQS_SHA3_*, OQS_randombytes)을
+# 순수 Rust crate 로 구현해 제공한다.
+#   - SHA3/SHAKE : sha3 (RustCrypto)
+#   - RNG        : rand
+[lib]
+crate-type = ["staticlib", "rlib"]
+
+[dependencies]
+sha3 = "0.10"
+rand = "0.8"

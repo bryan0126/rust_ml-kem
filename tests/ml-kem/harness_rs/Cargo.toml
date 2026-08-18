@@ -1,0 +1,10 @@
+[package]
+name = "harness_rs"
+version = "0.1.0"
+edition = "2021"
+
+# impl #4: C2Rust 산출물을 관용적 safe Rust 로 리팩터링한 구현
+[dependencies]
+mlkem_rs = { path = "../../../crates/ml-kem" }
+rand = "0.8"
+bench_util = { path = "../../../benches/ml-kem/bench_util" }

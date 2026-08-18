@@ -1,0 +1,12 @@
+[package]
+name = "mlkem_rs"
+version = "0.1.0"
+edition = "2021"
+
+# impl #4: C2Rust 산출물을 관용적(safe) Rust 로 리팩터링한 구현.
+#  - unsafe / 원시 포인터 없음  (#![forbid(unsafe_code)])
+#  - 고정 크기 배열 + 슬라이스 + const generic 으로 파라미터 세트 표현
+#  - FIPS202(SHA3/SHAKE)는 sha3 crate 사용 (C2Rust shim 과 동일한 선택)
+[dependencies]
+sha3 = "0.10"
+rand = "0.8"

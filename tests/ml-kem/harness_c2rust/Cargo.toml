@@ -1,0 +1,12 @@
+[package]
+name = "harness_c2rust"
+version = "0.1.0"
+edition = "2021"
+
+# impl #1: C2Rust 로 변환한 liboqs ML-KEM (+ sha3/rand crate shim)
+[dependencies]
+mlkem512_c2rust = { path = "../../../crates/ml-kem-c2rust/512" }
+mlkem768_c2rust = { path = "../../../crates/ml-kem-c2rust/768" }
+mlkem1024_c2rust = { path = "../../../crates/ml-kem-c2rust/1024" }
+oqs_shim = { path = "../../../crates/ml-kem-c2rust/shim" }
+bench_util = { path = "../../../benches/ml-kem/bench_util" }

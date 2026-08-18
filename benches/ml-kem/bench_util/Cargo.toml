@@ -1,0 +1,9 @@
+[package]
+name = "bench_util"
+version = "0.1.0"
+edition = "2021"
+
+# 세 Rust 하네스(c2rust / safe-Rust / ml-kem crate)가 공유하는 벤치 측정 로직.
+# 측정 방법·입력 패턴·체크섬 식을 한 곳에 두어 구현 간 비교가 공정해지도록 한다.
+# C 하네스(kat_harness.c)도 같은 식을 손으로 구현해 맞췄다.
+[dependencies]

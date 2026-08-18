@@ -47,3 +47,12 @@ Thumbs.db
 # Misc
 *.log
 *.tmp
+
+# --- ML-KEM 검증 작업 산출물 ---
+# C 하네스 실행 파일 (c/ml-kem/build_c.py 로 재생성)
+/c/*/kat_harness_*
+# C2Rust 변환용 컴파일 DB (tools/ml-kem/filter_cc.py 로 재생성)
+/tools/*/cdb/
+# 검증 실행 결과 (kat.py / bench.py 로 재생성)
+/tests/*/results/
+/benches/*/results/

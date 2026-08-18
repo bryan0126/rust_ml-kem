@@ -1,0 +1,23 @@
+# fdl-rust-pqc 워크스페이스
+#
+# ML-KEM 관련 크레이트 구성
+#   crates/ml-kem              손으로 작성한 Rust 구현 (패키지명 mlkem_rs)
+#   crates/ml-kem-c2rust/*     C2Rust 로 변환한 liboqs 구현 + 해시/난수 연결 코드
+#   benches/ml-kem/bench_util  성능 측정 공용 코드
+#   tests/ml-kem/harness_*     KAT 검증용 실행기
+#
+# 주의: 외부 의존성인 crates.io 의 `ml-kem` 과 이름이 겹치지 않도록
+#       우리 구현의 패키지명은 `mlkem_rs` 를 유지한다.
+[workspace]
+resolver = "2"
+members = [
+    "crates/ml-kem",
+    "crates/ml-kem-c2rust/512",
+    "crates/ml-kem-c2rust/768",
+    "crates/ml-kem-c2rust/1024",
+    "crates/ml-kem-c2rust/shim",
+    "benches/ml-kem/bench_util",
+    "tests/ml-kem/harness_c2rust",
+    "tests/ml-kem/harness_rs",
+    "tests/ml-kem/harness_mlkem",
+]

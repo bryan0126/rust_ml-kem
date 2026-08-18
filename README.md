@@ -11,6 +11,13 @@ A unified Rust library for post-quantum cryptography (PQC), covering seven algor
 | **Period**  | August 1, 2026 – February 28, 2027 (7 months)               |
 | **Team**    | 2 members                                                   |
 
+## Status
+
+- **ML-KEM** — four implementations cross-verified against NIST ACVP vectors
+  (240 cases, all passing) and benchmarked. See
+  [`docs/ml-kem/README.md`](docs/ml-kem/README.md).
+  Quick start: `LIBOQS_DIR=~/liboqs make ml-kem`
+
 ## Algorithms
 
 **NIST PQC (3)**
