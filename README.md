@@ -25,6 +25,7 @@ held to bit-exact equivalence with the original C code.
 > **The verification and benchmark pipeline requires Linux or macOS.**
 > On Windows, run it under **WSL** — that is the environment it was developed
 > and measured in. Native Windows is not supported.
+> See [Windows: running under WSL](#windows-running-under-wsl) for setup.
 
 The Rust code itself carries no platform-specific dependencies: `sha3` and
 `rand` are the only crates it pulls in, and there is no direct use of OS
@@ -91,6 +92,46 @@ resolve.
 
 `make ml-kem` runs build → KAT → benchmark in order. Individual stages are
 `make ml-kem-build`, `make ml-kem-kat`, `make ml-kem-bench`.
+
+Run `make` **from the repository root**. Invoking it anywhere else fails with
+`No rule to make target 'ml-kem'`, because `make` looks for the Makefile in the
+current directory.
+
+### Windows: running under WSL
+
+This is how the project was developed and measured, and the only supported way
+to run it on Windows.
+
+Install WSL2 with Ubuntu, from PowerShell:
+
+```powershell
+wsl --install -d Ubuntu
+```
+
+Then, inside the Ubuntu shell, install the toolchain:
+
+```bash
+sudo apt update
+sudo apt install -y build-essential cmake git python3 libssl-dev
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+```
+
+Reopen the shell so `cargo` lands on your `PATH`, then follow the Quick start
+above unchanged.
+
+Two things are worth knowing:
+
+- **Where you keep the repository.** A checkout under `/mnt/c/...` works, but
+  Windows drives are mounted over a network protocol, so builds are noticeably
+  slower. Cloning into the Linux home directory (`~/`) is faster. Either way the
+  benchmark results are unaffected — the measured code runs entirely in memory.
+- **Pin a core before benchmarking.** `bench.py` does not set CPU affinity, so on
+  a hybrid CPU the process can migrate between performance and efficiency cores
+  mid-run and the timings wobble. Pinning keeps them steady:
+
+  ```bash
+  taskset -c 0 make ml-kem-bench
+  ```
 
 ## Verification
 
