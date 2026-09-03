@@ -19,6 +19,27 @@ held to bit-exact equivalence with the original C code.
 - **Performance** — all four implementations benchmarked under identical
   conditions, with the source of the gap identified.
 
+## Platform requirements
+
+> [!IMPORTANT]
+> **The verification and benchmark pipeline requires Linux or macOS.**
+> On Windows, run it under **WSL** — that is the environment it was developed
+> and measured in. Native Windows is not supported.
+
+The Rust code itself carries no platform-specific dependencies: `sha3` and
+`rand` are the only crates it pulls in, and there is no direct use of OS
+facilities. The tooling around it is another matter.
+
+| | Native Windows |
+| --- | --- |
+| Building the Rust crates (`cargo build`) | expected to work, but untested |
+| KAT and benchmark scripts | **no** — harness paths are built without the `.exe` suffix |
+| Comparison against the C original | **no** — an MSVC build of liboqs does not emit `compile_commands.json` |
+| Re-running the C2Rust transpilation | **no** — C2Rust targets Linux and macOS |
+
+The scripts also assume a POSIX environment in smaller ways: GNU `make`, `rm`
+in the `clean` target, and `python3` rather than `python` or `py`.
+
 ## The four implementations
 
 | Label | Location | Description |
@@ -49,6 +70,8 @@ present — only the C original drops out of the comparison, and the tooling say
 so when it does.
 
 ## Quick start
+
+Run these on Linux or macOS — under WSL if you are on Windows.
 
 ```bash
 git clone https://github.com/open-quantum-safe/liboqs ~/liboqs
@@ -124,6 +147,10 @@ difference considerably.
 
 Iteration count matters: at 300 iterations results swung by as much as ±29
 percentage points, settling to roughly ±3% at 3000.
+
+These figures are wall-clock times from a single Linux machine. Absolute values
+will differ elsewhere, so read them as relative comparisons between the four
+implementations rather than as absolute costs.
 
 ## Transpilation
 
